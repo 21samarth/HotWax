@@ -1,0 +1,157 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| clg                |
+| employees          |
+| hotwax             |
+| information_schema |
+| javadb             |
+| mysql              |
+| performance_schema |
+| project            |
+| sys                |
++--------------------+
+9 rows in set (0.03 sec)
+
+mysql> use hotwax;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_hotwax |
++------------------+
+| address          |
+| orders           |
+| products         |
+| users            |
++------------------+
+4 rows in set (0.02 sec)
+
+mysql> select * from users;
++---------+------------+-----------+---------+
+| user_id | first_name | last_name | pincode |
++---------+------------+-----------+---------+
+| U1      | John       | Does      | 452001  |
+| U2      | Mary       | Ann       | 410014  |
++---------+------------+-----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from products;
++------------+---------------+---------------------+--------------------+----------+
+| product_id | product_name  | product_description | product_returnable | owner    |
++------------+---------------+---------------------+--------------------+----------+
+| P1         | One Plus Nord | Mobile Phone        | No                 | Seller_Z |
+| P2         | Air Jordans   | Shoes               | Yes                | Nike     |
++------------+---------------+---------------------+--------------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from orders;
++----------+------------+---------+-------+------------+----------+
+| order_id | product_id | user_id | total | date       | status   |
++----------+------------+---------+-------+------------+----------+
+| O1       | P1         | U1      |  2000 | 2024-03-04 | Approved |
+| O2       | P2         | U2      |  7000 | 2024-03-04 | Pending  |
+| O3       | P1         | U1      | 25000 | 2024-03-04 | Shipped  |
++----------+------------+---------+-------+------------+----------+
+3 rows in set (0.00 sec)
+
+
+mysql> select * from address;
++---------+-------+-------------+
+| pincode | city  | state       |
++---------+-------+-------------+
+| 410014  | Pune  | Maharashtra |
+| 452001  | Dewas | MP          |
++---------+-------+-------------+
+2 rows in set (0.00 sec)
+
+Q1. CHECK STATUS OF ORDER
+
+mysql>  SELECT status FROM orders WHERE order_id = 'O1';
++----------+
+| status   |
++----------+
+| Approved |
++----------+
+1 row in set (0.00 sec)
+
+
+Q2. FIND TOTAL AMOUNT OF ORDERS ?
+
+mysql> SELECT order_id, SUM(total) AS total_amount FROM orders GROUP BY order_id;
++----------+--------------+
+| order_id | total_amount |
++----------+--------------+
+| O1       |         2000 |
+| O2       |         7000 |
+| O3       |        25000 |
++----------+--------------+
+3 rows in set (0.01 sec)
+
+
+Q3. UPDATE CITY ?
+
+mysql> select * from address;
++---------+-------+-------------+
+| pincode | city  | state       |
++---------+-------+-------------+
+| 410014  | Pune  | Maharashtra |
+| 452001  | Dewas | MP          |
++---------+-------+-------------+
+2 rows in set (0.00 sec)
+
+UPDATE address SET city = 'Indore' where pincode = 452001;
+
+mysql> UPDATE address SET city = 'Indore' where pincode = 452001;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from address;
++---------+--------+-------------+
+| pincode | city   | state       |
++---------+--------+-------------+
+| 410014  | Pune   | Maharashtra |
+| 452001  | Indore | MP          |
++---------+--------+-------------+
+2 rows in set (0.00 sec)
+
+Q4. CHANGE PRODUCT_DESCRIPTION IN PRODUCT TABLE ?
+
+mysql> select * from products;
++------------+---------------+---------------------+--------------------+----------+
+| product_id | product_name  | product_description | product_returnable | owner    |
++------------+---------------+---------------------+--------------------+----------+
+| P1         | One Plus Nord | Mobile Phone        | No                 | Seller_Z |
+| P2         | Air Jordans   | Shoes               | Yes                | Nike     |
++------------+---------------+---------------------+--------------------+----------+
+2 rows in set (0.00 sec)
+
+
+mysql> UPDATE products SET product_description = 'this is a good phone' WHERE product_id = 'P1';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+mysql> SELECT * FROM products;
++------------+---------------+----------------------+--------------------+----------+
+| product_id | product_name  | product_description  | product_returnable | owner    |
++------------+---------------+----------------------+--------------------+----------+
+| P1         | One Plus Nord | this is a good phone | No                 | Seller_Z |
+| P2         | Air Jordans   | Shoes                | Yes                | Nike     |
++------------+---------------+----------------------+--------------------+----------+
+2 rows in set (0.00 sec)
+
+Q5. DISPLAY RETURNABLE PRODUCTS ?
+
+mysql>  SELECT * FROM products WHERE product_returnable = 'Yes';
++------------+--------------+---------------------+--------------------+-------+
+| product_id | product_name | product_description | product_returnable | owner |
++------------+---------------+----------------------+--------------------+----------+
+| P2         | Air Jordans  | Shoes               | Yes                | Nike  |
++------------+--------------+---------------------+--------------------+-------+
+1 row in set (0.00 sec)
+
+Q6. GENERATE ER DIAGRAM ?
+Ans. ER Diagram is attached with the repo
+
+
