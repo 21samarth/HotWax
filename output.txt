@@ -65,7 +65,7 @@ mysql> select * from address;
 +---------+-------+-------------+
 2 rows in set (0.00 sec)
 
-Q1. CHECK STATUS OF ORDER
+# Q1. CHECK STATUS OF ORDER
 
 mysql>  SELECT status FROM orders WHERE order_id = 'O1';
 +----------+
@@ -76,7 +76,7 @@ mysql>  SELECT status FROM orders WHERE order_id = 'O1';
 1 row in set (0.00 sec)
 
 
-Q2. FIND TOTAL AMOUNT OF ORDERS ?
+# Q2. FIND TOTAL AMOUNT OF ORDERS ?
 
 mysql> SELECT order_id, SUM(total) AS total_amount FROM orders GROUP BY order_id;
 +----------+--------------+
@@ -89,7 +89,7 @@ mysql> SELECT order_id, SUM(total) AS total_amount FROM orders GROUP BY order_id
 3 rows in set (0.01 sec)
 
 
-Q3. UPDATE CITY ?
+# Q3. UPDATE CITY ?
 
 mysql> select * from address;
 +---------+-------+-------------+
@@ -115,7 +115,7 @@ mysql> select * from address;
 +---------+--------+-------------+
 2 rows in set (0.00 sec)
 
-Q4. CHANGE PRODUCT_DESCRIPTION IN PRODUCT TABLE ?
+# Q4. CHANGE PRODUCT_DESCRIPTION IN PRODUCT TABLE ?
 
 mysql> select * from products;
 +------------+---------------+---------------------+--------------------+----------+
@@ -141,7 +141,7 @@ mysql> SELECT * FROM products;
 +------------+---------------+----------------------+--------------------+----------+
 2 rows in set (0.00 sec)
 
-Q5. DISPLAY RETURNABLE PRODUCTS ?
+# Q5. DISPLAY RETURNABLE PRODUCTS ?
 
 mysql>  SELECT * FROM products WHERE product_returnable = 'Yes';
 +------------+--------------+---------------------+--------------------+-------+
@@ -151,7 +151,7 @@ mysql>  SELECT * FROM products WHERE product_returnable = 'Yes';
 +------------+--------------+---------------------+--------------------+-------+
 1 row in set (0.00 sec)
 
-Q6. GENERATE ER DIAGRAM ?
+# Q6. GENERATE ER DIAGRAM ?
 Ans. ER Diagram is attached with the repo
 
 
